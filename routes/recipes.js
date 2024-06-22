@@ -2,7 +2,7 @@
 const express = require('express');
 
 //Creating an instance of an Express router, which then 
-// define routes for different HTTP methods (GET, POST, DELETE, etc.)
+// define routes for different HTTP methods (GET, POST, PATCH, DELETE)
 const router = express.Router();
 
 // Grab the controller functions

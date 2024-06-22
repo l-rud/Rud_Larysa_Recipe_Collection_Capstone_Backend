@@ -10,8 +10,9 @@ const app = express();
 // Port in which the server will run on
 const PORT = process.env.PORT || 8000;
 
-// Requiring example router
+// Requiring routers
 const recipeRouter = require('./routes/recipes');
+const categoryRouter = require('./routes/categories');
 
 //Importing the cors middleware
 const cors = require('cors');
@@ -30,8 +31,11 @@ app.use((req, res, next) => {
   next();
 });
 
-// Connecting the router to the server
+// Connecting recipes router to the server
 app.use('/recipes', recipeRouter);
+
+// Connecting categories router to the server
+app.use('/categories', categoryRouter);
 
 // Error Handling Middlware
 app.use((err, req, res, next) => {
