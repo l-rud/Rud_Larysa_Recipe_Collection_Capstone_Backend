@@ -1,16 +1,28 @@
 // Requiring and configuring the .env file to access its variables
 require('dotenv').config();
+
 // Requiring express
 const express = require('express');
+
 // Creating the express server and storing inside the app variable
 const app = express();
+
 // Port in which the server will run on
 const PORT = process.env.PORT || 8000;
-// Requiring example router
-const userRouter = require('./routes/users.js');
 
-// Configuring the server to accept and parse JSON data.
+// Requiring example router
+const recipeRouter = require('./routes/recipes');
+
+//Importing the cors middleware
+const cors = require('cors');
+
+// Configuring the server to accept and parse JSON data
 app.use(express.json());
+
+
+// Applying the cors middleware to the entire Express application, 
+//allowing it to respond to cross-origin requests
+app.use(cors());
 
 //Custom Middlware
 app.use((req, res, next) => {
@@ -19,7 +31,7 @@ app.use((req, res, next) => {
 });
 
 // Connecting the router to the server
-app.use('/users', userRouter);
+app.use('/recipes', recipeRouter);
 
 // Error Handling Middlware
 app.use((err, req, res, next) => {
