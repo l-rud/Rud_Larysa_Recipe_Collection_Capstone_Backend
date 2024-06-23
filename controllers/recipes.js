@@ -26,6 +26,19 @@ async function getByCategory(req, res) {
   }
 }
 
+// getById function retrieves recipe by id from the database
+async function getById(req, res) {
+  const id = req.params.id;
+  try {
+    const recipe = await Recipe.findById(id);
+    if (recipe) {
+      res.status(200).json(recipe);
+    }
+  } catch (err) {
+    res.status(400).send(err);
+  }
+}
+
 // Creating a new recipe based on data received in req.body
 async function create(req, res) {
   try {
@@ -69,6 +82,7 @@ async function remove(req, res) {
 module.exports = {
   getAll,
   getByCategory,
+  getById,
   create,
   update,
   remove
