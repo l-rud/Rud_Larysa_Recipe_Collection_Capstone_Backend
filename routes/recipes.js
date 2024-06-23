@@ -6,10 +6,13 @@ const express = require('express');
 const router = express.Router();
 
 // Grab the controller functions
-const { getAll, create, update, remove } = require('../controllers/recipes');
+const { getAll, getByCategory, create, update, remove } = require('../controllers/recipes');
 
 // Get all recipes
 router.get('/', getAll);
+
+// Get all recipes by category
+router.get('/category/:category', getByCategory);
 
 // Create a recipe
 router.post('/', create);

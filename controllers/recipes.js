@@ -13,6 +13,19 @@ async function getAll(req, res) {
   }
 }
 
+// getByCategory function retrieves all recipes belonging to the category from the database
+async function getByCategory(req, res) {
+  const category = req.params.category;
+  try {
+    const recipes = await Recipe.find({category: category});
+    if (recipes) {
+      res.status(200).json(recipes);
+    }
+  } catch (err) {
+    res.status(400).send(err);
+  }
+}
+
 // Creating a new recipe based on data received in req.body
 async function create(req, res) {
   try {
@@ -55,6 +68,7 @@ async function remove(req, res) {
 
 module.exports = {
   getAll,
+  getByCategory,
   create,
   update,
   remove
